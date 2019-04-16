@@ -2,71 +2,100 @@
 <html>
 <head>
     <meta charset="utf-8" />
+    
+    <!--Responsive to device size-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap library -->
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- Popper JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <!-- JavaScript library -->
     <script src="js/bootstrap.min.js"></script>
+    
     <title>Index</title>
 </head>
 <body>
+    <!-- Main Container -->
     <div class="container-fluid">
-        <div class="row">
-            <!-- A grey horizontal navbar that becomes vertical on small screens -->
-            <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
-                <!-- Links -->
-                <ul class="navbar-nav">
-                    <a class="navbar-brand" href="#">
-                        <img src="img/logo_jiaac.jpg" alt="Logo" style="width:40px;">
-                    </a>
-                </ul>
+        <!-- Header -->
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-md navbar-dark bg-primary">
+                <div class="container-fluid">
+                    <a href="https://www.argentina.gob.ar/jiaac" class="navbar-brand custom-logo-link" rel="home" itemprop="url"><img width="300" height="41" src="https://so.jiaac.gob.ar/wp-content/uploads/2018/09/logo.png" class="img-fluid" alt="JIAAC | Investigación para la seguridad aérea" itemprop="logo"></a><!-- end custom logo -->
 
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
             </nav>
         </div>
-        <div class="jumbotron">
-            <div class="col-8 justify-content-center offset-2">
-                <div id="demo" class="carousel slide bg-light" data-ride="carousel">
-                    <!-- Indicators -->
-                    <ul class="carousel-indicators">
-                        <li data-target="#demo" data-slide-to="0" class="active"></li>
-                        <li data-target="#demo" data-slide-to="1"></li>
-                        <li data-target="#demo" data-slide-to="2"></li>
-                    </ul>
+        <!-- Carousel/Picture slides -->
+        <div class="container-fluid">
+            <div class="jumbotron">
+                <div class="col-8 align-content-center offset-2">
+                    <div id="demo" class="carousel slide bg-light" data-ride="carousel">
+                        <!-- Indicators -->
+                        <ul class="carousel-indicators">
+                            <li data-target="#demo" data-slide-to="0" class="active"></li>
+                            <li data-target="#demo" data-slide-to="1"></li>
+                            <li data-target="#demo" data-slide-to="2"></li>
+                        </ul>
 
-                    <!-- The slideshow -->
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="img/foto_grupal_2.jpg" alt="Foto Grupal">
+                        <!-- The slideshow -->
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="img/foto_grupal_2.jpg" alt="Foto Grupal" height="300" width="600">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="img/arcm-banner_0.jpg" alt="ARCM" height="300" width="600">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="img/foto_aeroaplicador_1.jpg" alt="Aeroaplicador" height="300" width="600">
+                            </div>
                         </div>
-                        <div class="carousel-item">
-                            <img src="img/arcm-banner_0.jpg" alt="ARCM">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="img/foto_aeroaplicador_1.jpg" alt="Aeroaplicador">
-                        </div>
+
+                        <!-- Left and right controls -->
+                        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </a>
+                        <a class="carousel-control-next" href="#demo" data-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </a>
                     </div>
-
-                    <!-- Left and right controls -->
-                    <a class="carousel-control-prev" href="#demo" data-slide="prev">
-                        <span class="carousel-control-prev-icon"></span>
-                    </a>
-                    <a class="carousel-control-next" href="#demo" data-slide="next">
-                        <span class="carousel-control-next-icon"></span>
-                    </a>
                 </div>
-            </div>
 
+            </div>
         </div>
-        <div class="row"></div>
+        <!--Main App/Menu/Table -->
+        <div class="row">
+            <!-- Left side menu -->
+            <div class="col-2 bg-light">
+                <ul class="nav flex-column nav-pills">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Mostrar Todos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Nuevo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Modificar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Eliminar</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Tables -->
+            <div class="col-8 bg-dark">Columna 2</div>
+            <!-- Undefined -->
+            <div class="col-2 bg-light">Columna 3</div>
+        </div>
+        <!--Footer-->
         <footer>
             <div class="row"></div>
         </footer>
     </div>
 </body>
-
-
-
-
 </html>
