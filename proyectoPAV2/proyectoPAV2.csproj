@@ -74,6 +74,7 @@
     <Content Include="css\bootstrap-reboot.min.css" />
     <Content Include="css\bootstrap.css" />
     <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\style.css" />
     <Content Include="img\arcm-banner_0.jpg" />
     <Content Include="img\foto_aeroaplicador_1.jpg" />
     <Content Include="img\foto_grupal_2.jpg" />
