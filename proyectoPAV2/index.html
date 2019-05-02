@@ -17,11 +17,12 @@
     <link href="css/style.css" rel="stylesheet"/>
     <!-- AngularJS  -->
     <script src="js/angular.min.js"></script>
-
+    <!-- App Script (Angular controllers) -->
+    <script src="js/app.js" type="text/javascript"></script>
     
     <title>Index</title>
 </head>
-<body>
+<body ng-app='myApp' ng-controller="index">
     <!-- Main Container -->
     <div class="container-fluid">
         <!-- Header -->
@@ -33,7 +34,7 @@
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <button type="button" class="btn btn-light">Acerca de...</button>
+                    <button type="button" class="btn btn-light" onclick="alert('Autor: Francisco Barafani')">Acerca de...</button>
                 </div>
             </nav>
         </div>
@@ -95,8 +96,13 @@
                     </li>
                 </ul>
             </div>
-            <!-- Tables -->
-            <div class="col-8 bg-dark">Columna 2</div>
+            <!-- Consultar como hacer los NG HIDE para esconder y abrir lsa columnas para cada formulario -->
+            <!-- Table Expedientes -->
+            <div class="col-8 bg-dark">Columna Tablas</div>
+            <!-- Add Expediente Form -->
+
+            <!-- Modify Expediente Form -->
+
             <!-- Undefined -->
             <div class="col-2 bg-light">Columna 3</div>
         </div>
