@@ -83,32 +83,37 @@
             <div class="col-2 bg-light">
                 <ul class="nav flex-column nav-pills">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Mostrar Todos</a>
+                        <a class="nav-link active" href="#" ng-click="ShowHideExpedients()">Mostrar Todos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Nuevo</a>
+                        <a class="nav-link" href="#" ng-click="ShowHideNew()">Nuevo</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Modificar</a>
+                        <a class="nav-link" href="#" ng-click="ShowHideModify()">Modificar</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Eliminar</a>
+                        <a class="nav-link" >Eliminar</a>
                     </li>
                 </ul>
             </div>
-            <!-- Consultar como hacer los NG HIDE para esconder y abrir lsa columnas para cada formulario -->
-            <!-- Table Expedientes -->
-            <div class="col-8 bg-dark">Columna Tablas</div>
-            <!-- Add Expediente Form -->
-
-            <!-- Modify Expediente Form -->
-
+            <!-- Consultar como hacer los NG HIDE para esconder y abrir las columnas para cada formulario -->
+            <!-- Main Column -->
+            <div class="col-8 bg-dark">
+                <!-- Table Expedientes -->
+                <div ng-show="shExpedients">Expedientes Tablas </div>
+                <!-- Add Expediente Form -->
+                <div ng-show="shNew">Columna Form Nuevo</div>
+                <!-- Modify Expediente Form -->
+                <div ng-show="shModify">Columna Form Modificar</div>
+            </div>    
             <!-- Undefined -->
             <div class="col-2 bg-light">Columna 3</div>
         </div>
         <!--Footer-->
         <footer>
-            <div class="row"></div>
+            <div class="row">
+              
+            </div>
         </footer>
     </div>
 </body>
