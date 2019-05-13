@@ -1,4 +1,5 @@
-﻿//Angular-JS
+﻿
+//Angular-JS
 myApp = angular.module('myApp', []);
 myApp.controller('index', function ($scope) {
 
@@ -23,8 +24,6 @@ myApp.controller('index', function ($scope) {
         $scope.shNew = false;
         $scope.shModify = true;
     };
-
-
 
     //JSON DEFAULT OBJECTS CREATION
     //Default Expedients Variable
@@ -119,11 +118,30 @@ myApp.controller('index', function ($scope) {
             "modelo": "A-320",
             "matricula": "NN-CLR3",
             "estado": "En Curso"
-        },
+        }
       
     ];
-     
+
+    //Add Expedient Function
+    $scope.addExpedient = function () {
+        $scope.expedients.push({
+            "id": 8,
+            "numero": $scope.inputNumero,
+            "fecha": $scope.inputFecha,
+            "suceso": $scope.inputSuceso,
+            "lugar": $scope.inputLugar,
+            "fase": $scope.inputFase,
+            "aeronave": $scope.inputAeronave,
+            "marca": $scope.inputMarca,
+            "modelo": $scope.inputModelo,
+            "matricula": $scope.inputMatricula,
+            "estado": $scope.inputEstado
+        });
+        alert("Expediente Agregado");
+    };
 });
 
 
-//JS
+
+
+
