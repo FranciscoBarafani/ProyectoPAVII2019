@@ -81,17 +81,21 @@
     <Content Include="css\bootstrap.css" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\style.css" />
+    <Content Include="expedientes.html" />
     <Content Include="img\arcm-banner_0.jpg" />
     <Content Include="img\foto_aeroaplicador_1.jpg" />
     <Content Include="img\foto_grupal_2.jpg" />
     <Content Include="img\logo_jiaac.jpg" />
     <Content Include="index.html" />
+    <Content Include="js\angular-route.min.js" />
     <Content Include="js\angular.min.js" />
     <Content Include="js\app.js" />
     <Content Include="js\bootstrap.bundle.js" />
     <Content Include="js\bootstrap.bundle.min.js" />
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
+    <Content Include="modificar.html" />
+    <Content Include="nuevo.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

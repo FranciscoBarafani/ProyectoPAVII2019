@@ -1,0 +1,29 @@
+﻿ <!-- Table Expedientes -->
+<div>
+  <table border="1">
+    <tr>
+      <th>Numero</th>
+      <th>Fecha</th>
+      <th>Suceso</th>
+      <th>Lugar</th>
+      <th>Fase</th>
+      <th>Aeronave</th>
+      <th>Marca</th>
+      <th>Modelo</th>
+      <th>Matricula</th>
+      <th>Estado</th>
+    </tr>
+    <tr ng-repeat="x in expedients">
+      <td>{{x.numero}}</td>
+      <td>{{x.fecha}}</td>
+      <td>{{x.suceso}}</td>
+      <td>{{x.lugar}}</td>
+      <td>{{x.fase}}</td>
+      <td>{{x.aeronave}}</td>
+      <td>{{x.marca}}</td>
+      <td>{{x.modelo}}</td>
+      <td>{{x.matricula}}</td>
+      <td>{{x.estado}}</td>
+    </tr>
+  </table>
+</div>

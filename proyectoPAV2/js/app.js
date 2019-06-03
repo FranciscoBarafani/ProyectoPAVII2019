@@ -1,29 +1,42 @@
 ﻿
 //Angular-JS
-myApp = angular.module('myApp', []);
-myApp.controller('index', function ($scope) {
+myApp = angular.module('myApp', ['ngRoute']);
+//SPA 
+myApp.config(['$locationProvider', function ($locationProvider) {
+    $locationProvider.hashPrefix('');
+}]);
 
-    //Show And Hide Functions  //CREAR UNA FUNCION UNICA POR ID??
-    //Variables Initiation
-    $scope.shExpedients = true; //Starts with true as default
-    $scope.shNew = false;
-    $scope.shModify = false;
-    //sh references ShowHide (variable with flag to show or hide div)
-    $scope.ShowHideExpedients = function () {
-        $scope.shExpedients = true;
-        $scope.shNew = false;
-        $scope.shModify = false;
-    };
-    $scope.ShowHideNew = function () {
-        $scope.shExpedients = false;
-        $scope.shNew = true;
-        $scope.shModify = false;
-    };
-    $scope.ShowHideModify = function () {
-        $scope.shExpedients = false;
-        $scope.shNew = false;
-        $scope.shModify = true;
-    };
+myApp.config(function ($routeProvider) {
+
+    //Configuracion de las rutas
+    $routeProvider
+        .when('/expedientes', {
+            templateUrl: '/expedientes.html',
+            controller: 'index'
+        })
+
+        .when('/nuevo', {
+            templateUrl: '/nuevo.html',
+            controller: 'nuevo'
+        })
+
+        .when('/modificar', {
+            templateUrl: '/modificar.html',
+            controller: 'modificar'
+        })
+
+});
+
+myApp.controller('modificar', function ($scope) {
+    $scope.message = 'Modificar';
+});
+
+myApp.controller('nuevo', function ($scope) {
+    $scope.message = 'Nuevo';
+});
+
+
+myApp.controller('index', function ($scope) {
 
     //JSON DEFAULT OBJECTS CREATION
     //Default Expedients Variable
