@@ -3,7 +3,7 @@
 myApp = angular.module('myApp', ['ngRoute']);
 //SPA 
 myApp.config(['$locationProvider', function ($locationProvider) {
-    $locationProvider.hashPrefix('');
+  $locationProvider.hashPrefix('');
 }]);
 
 myApp.config(function ($httpProvider, $routeProvider) {
@@ -136,11 +136,13 @@ myApp.run(function ($rootScope, $http, $location, myService) {
 });
 
 myApp.controller('modificar', function ($scope) {
-    $scope.message = 'Modificar';
+  $scope.message = 'Modificar';
 });
 
-myApp.controller('nuevo', function ($scope) {
-    $scope.message = 'Nuevo';
+myApp.controller('nuevo', function ($scope, $http , myService) {
+  $scope.Grabar = function () {
+    $http.post('/api/Expedientes', $scope.DtoSel);
+  };
 });
 
 
@@ -152,7 +154,7 @@ myApp.controller('expedientes',
         $scope.expedients = response.data;
       });
   }
-        
+
 );
 
 
