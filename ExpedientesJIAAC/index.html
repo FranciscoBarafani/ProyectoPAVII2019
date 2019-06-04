@@ -24,7 +24,7 @@
 
   <title>Expedientes</title>
 </head>
-<body ng-app='myApp' ng-controller="index">
+<body ng-app='myApp'>
   <!-- Main Container -->
   <div class="container-fluid">
     <!-- Header -->
@@ -99,12 +99,15 @@
         </ul>
       </div>
       <!-- Main Column -->
-      <div class="col-10">
+      <div class="col-10" style="margin-bottom: 30px">
         <div id="main">
-          <div ng-view></div>
+          <div ng-view>
+
+          </div>
         </div>
       </div>
       <!--Footer-->
+    </div>
     </div>
 </body>
 </html>
