@@ -1,6 +1,6 @@
 ﻿
 //Angular-JS
-myApp = angular.module('myApp', ['ngRoute']);
+myApp = angular.module('myApp', ['ui.bootstrap', 'ngRoute']);
 //SPA 
 myApp.config(['$locationProvider', function ($locationProvider) {
   $locationProvider.hashPrefix('');
@@ -84,6 +84,7 @@ myApp.service('myService', function ($timeout) {
     if (contadorBloqueo === 0)
       $timeout(function () { $dialog.modal('hide'); }, 100); //dentro de un timeout para que angular actualice la pantalla
   };
+
 });
 
 myApp.factory('myHttpInterceptor', function ($q, myService) {
@@ -139,7 +140,7 @@ myApp.controller('modificar', function ($scope) {
   $scope.message = 'Modificar';
 });
 
-myApp.controller('nuevo', function ($scope, $http , myService) {
+myApp.controller('nuevo', function ($scope, $http, myService) {
   $scope.Grabar = function () {
     $http.post('/api/Expedientes', $scope.DtoSel);
   };
@@ -153,11 +154,15 @@ myApp.controller('expedientes',
       .then(function (response) {
         $scope.expedients = response.data;
       });
-  }
 
-);
+    $scope.Eliminar = function (dto) {
+      myService.Confirm("Esta seguro que desea eliminar este registro?", fun, null, "Confirmación", "Aceptar", "Cancelar");
+      function fun() {
+          $http.put('/api/Expedientes/' + dto.id, dto);
+      }
+    };
+  });
 
-
-
-
-
+$(document).ready(function () {
+  $('#tablaExpedientes').DataTable();
+});

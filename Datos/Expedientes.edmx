@@ -83,8 +83,8 @@
           <NavigationProperty Name="Expedientes" Relationship="Self.FK_Expedientes_Marca" FromRole="Marca" ToRole="Expedientes" />
         </EntityType>
         <Association Name="FK_Expedientes_Marca">
-          <End Role="Marca" Type="Self.Marca" Multiplicity="1" />
-          <End Role="Expedientes" Type="Self.Expediente" Multiplicity="*" />
+          <End Type="Self.Marca" Multiplicity="1" Role="Marca" />
+          <End Type="Self.Expediente" Multiplicity="*" Role="Expedientes" />
           <ReferentialConstraint>
             <Principal Role="Marca">
               <PropertyRef Name="id" />
@@ -98,8 +98,8 @@
           <EntitySet Name="Expedientes" EntityType="Self.Expediente" />
           <EntitySet Name="Marcas" EntityType="Self.Marca" />
           <AssociationSet Name="FK_Expedientes_Marca" Association="Self.FK_Expedientes_Marca">
-            <End Role="Marca" EntitySet="Marcas" />
-            <End Role="Expedientes" EntitySet="Expedientes" />
+            <End EntitySet="Marcas" Role="Marca" />
+            <End EntitySet="Expedientes" Role="Expedientes" />
           </AssociationSet>
         </EntityContainer>
       </Schema>

@@ -1,29 +1,88 @@
 ﻿ <!-- Table Expedientes -->
 <div>
-  <table border="1">
-    <tr>
-      <th>Numero</th>
-      <th>Fecha</th>
-      <th>Suceso</th>
-      <th>Lugar</th>
-      <th>Fase</th>
-      <th>Aeronave</th>
-      <th>Marca</th>
-      <th>Modelo</th>
-      <th>Matricula</th>
-      <th>Estado</th>
-    </tr>
-    <tr ng-repeat="x in expedients">
-      <td>{{x.numero}}</td>
-      <td>{{x.fecha}}</td>
-      <td>{{x.suceso}}</td>
-      <td>{{x.lugar}}</td>
-      <td>{{x.fase}}</td>
-      <td>{{x.aeronave}}</td>
-      <td>{{x.marca}}</td>
-      <td>{{x.modelo}}</td>
-      <td>{{x.matricula}}</td>
-      <td>{{x.estado}}</td>
-    </tr>
+  <!-- Paginador-->
+  <div class="row" style="padding-bottom:10px ; padding-left: 30px">
+    <h5 style="padding-right:10px">BUSCAR: </h5>
+    <div class="col-2">
+      <input type="text" class="form-control" id="myInput" onkeyup="myFunction()" placeholder="Numero expediente" style="padding-left: 5px">
+    </div>
+    </div>
+    <table border="1" id="tablaExpedientes">
+    <thead>
+      <tr>
+        <th>Numero</th>
+        <th>Fecha</th>
+        <th>Suceso</th>
+        <th>Lugar</th>
+        <th>Fase</th>
+        <th>Aeronave</th>
+        <th>Marca</th>
+        <th>Modelo</th>
+        <th>Matricula</th>
+        <th>Estado</th>
+        <th style="background-color: lightblue">Opciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="dto in expedients" on-click="changeColor(this)">
+        <td>{{dto.numeroExpediente}}</td>
+        <td>{{dto.fecha}}</td>
+        <td>{{dto.suceso}}</td>
+        <td>{{dto.lugar}}</td>
+        <td>{{dto.fase}}</td>
+        <td>{{dto.aeronave}}</td>
+        <td>{{dto.marca}}</td>
+        <td>{{dto.modelo}}</td>
+        <td>{{dto.matricula}}</td>
+        <td>{{dto.estado}}</td>
+        <td class="text-center text-nowrap">
+          <button class="btn btn-primary btn-sm" title="Modificar"
+                  ng-click="">
+            Modificar
+          </button>
+          <button class="btn btn-primary btn-sm" title="Eliminar"
+                  ng-click="Eliminar(dto)">
+            Eliminar
+          </button>
+
+        </td>
+      </tr>
+    </tbody>
   </table>
+  <!-- FALTA IMPLEMENTAR -->
+  <div class="col-sm-12" style="padding-top: 20px">
+    <div class="row bg-light">
+      <div class="col-sm-3">
+        <span class="label label-default font-weight-bold">Registros: {{RegistrosTotal}}</span>
+      </div>
+      <div class="col-sm-6 text-center">
+        <ul uib-pagination total-items="RegistrosTotal" ng-model="PaginaActual" max-size="10"
+            class="pagination-sm" boundary-links="true" first-text="Primera" last-text="Ultima"
+            previous-text="Anterior" next-text="Siguiente" rotate="true" ng-change="Buscar()"></ul>
+      </div>
+    </div>
+  </div>
 </div>
+<script>
+  function myFunction() {
+    // Declare variables
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("tablaExpedientes");
+    tr = table.getElementsByTagName("tr");
+
+    // Loop through all table rows, and hide those who don't match the search query
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[0];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  }
+</script>

@@ -7,7 +7,7 @@
       <Diagram DiagramId="b43ee9144e8f4fde8f38d204a8e50d9a" Name="Diagram1">
         <EntityTypeShape EntityType="ExpedientesModel.Expediente" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="ExpedientesModel.Marca" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
-        <AssociationConnector Association="ExpedientesModel.FK_Expedientes_Marca" ManuallyRouted="false" />
+        <AssociationConnector ManuallyRouted="false" Association="ExpedientesModel.FK_Expedientes_Marca" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
