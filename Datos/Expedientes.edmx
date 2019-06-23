@@ -4,10 +4,10 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ExpedientesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ExpedientesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Expedientes">
           <Key>
-            <PropertyRef Name="numeroExpediente" />
+            <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="numeroExpediente" Type="int" Nullable="false" />
@@ -50,14 +50,13 @@
             <End Role="Expedientes" EntitySet="Expedientes" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ExpedientesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Expediente">
           <Key>
-            <PropertyRef Name="numeroExpediente" />
+            <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="numeroExpediente" Type="Int32" Nullable="false" />
@@ -83,8 +82,8 @@
           <NavigationProperty Name="Expedientes" Relationship="Self.FK_Expedientes_Marca" FromRole="Marca" ToRole="Expedientes" />
         </EntityType>
         <Association Name="FK_Expedientes_Marca">
-          <End Type="Self.Marca" Multiplicity="1" Role="Marca" />
-          <End Type="Self.Expediente" Multiplicity="*" Role="Expedientes" />
+          <End Role="Marca" Type="Self.Marca" Multiplicity="1" />
+          <End Role="Expedientes" Type="Self.Expediente" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Marca">
               <PropertyRef Name="id" />
@@ -94,12 +93,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ExpedientesEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="ExpedientesEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Expedientes" EntityType="Self.Expediente" />
           <EntitySet Name="Marcas" EntityType="Self.Marca" />
           <AssociationSet Name="FK_Expedientes_Marca" Association="Self.FK_Expedientes_Marca">
-            <End EntitySet="Marcas" Role="Marca" />
-            <End EntitySet="Expedientes" Role="Expedientes" />
+            <End Role="Marca" EntitySet="Marcas" />
+            <End Role="Expedientes" EntitySet="Expedientes" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -107,7 +106,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ExpedientesModelStoreContainer" CdmEntityContainer="ExpedientesEntities">
+        <EntityContainerMapping StorageEntityContainer="ExpedientesModelStoreContainer" CdmEntityContainer="ExpedientesEntities1">
           <EntitySetMapping Name="Expedientes">
             <EntityTypeMapping TypeName="ExpedientesModel.Expediente">
               <MappingFragment StoreEntitySet="Expedientes">

@@ -13,10 +13,10 @@ namespace Datos
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ExpedientesEntities : DbContext
+    public partial class ExpedientesEntities1 : DbContext
     {
-        public ExpedientesEntities()
-            : base("name=ExpedientesEntities")
+        public ExpedientesEntities1()
+            : base("name=ExpedientesEntities1")
         {
         }
     

@@ -6,8 +6,8 @@
     <div class="col-2">
       <input type="text" class="form-control" id="myInput" onkeyup="myFunction()" placeholder="Numero expediente" style="padding-left: 5px">
     </div>
-    </div>
-    <table border="1" id="tablaExpedientes">
+  </div>
+  <table border="1" id="tablaExpedientes">
     <thead>
       <tr>
         <th>Numero</th>
@@ -26,7 +26,7 @@
     <tbody>
       <tr ng-repeat="dto in expedients" on-click="changeColor(this)">
         <td>{{dto.numeroExpediente}}</td>
-        <td>{{dto.fecha}}</td>
+        <td>{{dto.fecha | date: dd/mm/yy}}</td>
         <td>{{dto.suceso}}</td>
         <td>{{dto.lugar}}</td>
         <td>{{dto.fase}}</td>
@@ -37,7 +37,7 @@
         <td>{{dto.estado}}</td>
         <td class="text-center text-nowrap">
           <button class="btn btn-primary btn-sm" title="Modificar"
-                  ng-click="">
+                  ng-click="Modificar(dto)" data-toggle="modal" data-target="#myModal">
             Modificar
           </button>
           <button class="btn btn-primary btn-sm" title="Eliminar"
@@ -63,6 +63,104 @@
     </div>
   </div>
 </div>
+
+
+<!-- MODAL -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Modificar Expediente</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div>
+          <form>
+            <!-- First Row Expedient Number-->
+            <div class="form-row">
+              <div class="form-group col-md-8">
+                <label>Numero Expediente:</label>
+                <input type="number" class="form-control" ng-model="DtoSel.numeroExpediente" placeholder="Numero">
+              </div>
+              <div class="form-group col-md-2">
+                <label>Estado:</label>
+                <select ng-model="DtoSel.estado" class="form-control">
+                  <option selected>En Curso</option>
+                  <option>Finalizado</option>
+                </select>
+              </div>
+              <div class="form-group col-md-2">
+                <label>Suceso:</label>
+                <select ng-model="DtoSel.suceso" class="form-control">
+                  <option selected>Accidente</option>
+                  <option>Incidente</option>
+                  <option>Incidente Grave</option>
+                </select>
+              </div>
+            </div>
+            <!-- Second Row Date / Place -->
+            <div class="form-row">
+              <div class="form-group col-md-4">
+                <label>Fecha del Incidente:</label>
+                <input type="date" class="form-control" ng-model="DtoSel.fecha" placeholder="Fecha">
+              </div>
+              <div class="form-group col-md-4">
+                <label>Lugar</label>
+                <input type="text" class="form-control" ng-model="DtoSel.lugar" placeholder="Lugar">
+              </div>
+              <div class="form-group col-md-4">
+                <label>Fase:</label>
+                <select ng-model="DtoSel.fase" class="form-control">
+                  <option selected>Despegue</option>
+                  <option>Aterrizaje</option>
+                  <option>Rodaje</option>
+                  <option>Vuelo</option>
+                </select>
+              </div>
+            </div>
+            <!-- Third Row / Aircraft Info -->
+            <div class="form-row">
+              <div class="form-group col-md-3">
+                <label>Aeronave:</label>
+                <select ng-model="DtoSel.aeronave" class="form-control">
+                  <option selected>Avion</option>
+                  <option>Helicoptero</option>
+                  <option>Experimental</option>
+                  <option>Otro</option>       </select>
+              </div>
+              <div class="form-group col-md-3">
+                <label>Marca:</label>
+                  <select ng-model="DtoSel.marca" class="form-control"
+                          ng-options="obj.id as obj.nombre for obj in Marca"></select>
+              </div>
+              <div class="form-group col-md-3">
+                <label>Modelo:</label>
+                <input type="text" class="form-control" ng-model="DtoSel.modelo" placeholder="Modelo" />
+              </div>
+              <div class="form-group col-md-3">
+                <label>Matricula:</label>
+                <input type="text" class="form-control" ng-model="DtoSel.matricula" placeholder="Matricula" />
+              </div>
+            </div>
+          </form>
+          <br />
+        </div>
+
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="Grabar()" data-dismiss="modal">Grabar</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 <script>
   function myFunction() {
     // Declare variables

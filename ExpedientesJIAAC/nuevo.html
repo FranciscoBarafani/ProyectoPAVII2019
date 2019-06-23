@@ -5,18 +5,18 @@
     <div class="form-row">
       <div class="form-group col-md-4">
         <label>Numero Expediente:</label>
-        <input type="number" class="form-control" ng-model="DtoSel.Numero" placeholder="Numero">
+        <input type="number" class="form-control" ng-model="DtoSel.numeroExpediente" placeholder="Numero">
       </div>
       <div class="form-group col-md-2">
         <label>Estado:</label>
-        <select ng-model="DtoSel.Estado" class="form-control">
+        <select ng-model="DtoSel.estado" class="form-control">
           <option selected>En Curso</option>
           <option>Finalizado</option>
         </select>
       </div>
       <div class="form-group col-md-2">
         <label>Suceso:</label>
-        <select ng-model="DtoSel.Suceso" class="form-control">
+        <select ng-model="DtoSel.suceso" class="form-control">
           <option selected>Accidente</option>
           <option>Incidente</option>
           <option>Incidente Grave</option>
@@ -27,15 +27,15 @@
     <div class="form-row">
       <div class="form-group col-md-2">
         <label>Fecha del Incidente:</label>
-        <input type="date" class="form-control" ng-model="DtoSel.Fecha" placeholder="Fecha">
+        <input type="date" class="form-control" ng-model="DtoSel.fecha" placeholder="Fecha">
       </div>
       <div class="form-group col-md-4">
         <label>Lugar</label>
-        <input type="text" class="form-control" ng-model="DtoSel.Lugar" placeholder="Lugar">
+        <input type="text" class="form-control" ng-model="DtoSel.lugar" placeholder="Lugar">
       </div>
       <div class="form-group col-md-2">
         <label>Fase:</label>
-        <select ng-model="DtoSel.Fase" class="form-control">
+        <select ng-model="DtoSel.fase" class="form-control">
           <option selected>Despegue</option>
           <option>Aterrizaje</option>
           <option>Rodaje</option>
@@ -47,7 +47,7 @@
     <div class="form-row">
       <div class="form-group col-md-2">
         <label>Aeronave:</label>
-        <select ng-model="DtoSel.Aeronave" class="form-control">
+        <select ng-model="DtoSel.aeronave" class="form-control">
           <option selected>Avion</option>
           <option>Helicoptero</option>
           <option>Experimental</option>
@@ -56,20 +56,17 @@
       </div>
       <div class="form-group col-md-2">
         <label>Marca:</label>
-        <select ng-model="DtoSel.Marca" class="form-control">
-          <option value="7" selected>Airbus</option>
-          <option value="1">Boeign</option>
-          <option value="5">Embraer</option>
-          <option value="3">TECNAM</option>
+        <select ng-model="DtoSel.marca" class="form-control"
+                ng-options="obj.id as obj.nombre for obj in Marca">        
         </select>
       </div>
       <div class="form-group col-md-2">
         <label>Modelo:</label>
-        <input type="text" class="form-control" ng-model="DtoSel.Modelo" placeholder="Modelo" />
+        <input type="text" class="form-control" ng-model="DtoSel.modelo" placeholder="Modelo" />
       </div>
       <div class="form-group col-md-2">
         <label>Matricula:</label>
-        <input type="text" class="form-control" ng-model="DtoSel.Matricula" placeholder="Matricula" />
+        <input type="text" class="form-control" ng-model="DtoSel.matricula" placeholder="Matricula" />
       </div>
     </div>
   </form>

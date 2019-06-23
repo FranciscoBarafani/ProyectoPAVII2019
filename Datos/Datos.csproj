@@ -68,38 +68,37 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Expedientes.edmx</DependentUpon>
     </Compile>
+    <Compile Include="GestorExpedientes.cs" />
     <Compile Include="Marca.cs">
       <DependentUpon>Expedientes.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <EntityDeploy Include="Expedientes.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Expedientes.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
     <None Include="Expedientes.edmx.diagram">
       <DependentUpon>Expedientes.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Expedientes.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Expedientes.Context.cs</LastGenOutput>
       <DependentUpon>Expedientes.edmx</DependentUpon>
+      <LastGenOutput>Expedientes.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Expedientes.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Expedientes.edmx</DependentUpon>
       <LastGenOutput>Expedientes.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

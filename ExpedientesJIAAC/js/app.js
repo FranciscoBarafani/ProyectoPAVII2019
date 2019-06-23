@@ -88,7 +88,7 @@ myApp.service('myService', function ($timeout) {
 });
 
 myApp.factory('myHttpInterceptor', function ($q, myService) {
-  // factory retorna un objeto
+
   var myHttpInterceptor = {
     request: function (config) {
       myService.BloquearPantalla();
@@ -103,7 +103,7 @@ myApp.factory('myHttpInterceptor', function ($q, myService) {
     },
     responseError: function (response) {
       myService.DesbloquearPantalla();
-      // acceso denegado generado por alguna llamada al servidor (no carga las vistas)
+
       if (response.status === 404 || response.status === 401) {
         myService.Alert("Acceso Denegado...");
       }
@@ -111,7 +111,7 @@ myApp.factory('myHttpInterceptor', function ($q, myService) {
         myService.Alert("Peticion incorrecta...");
       }
       else if (response.data && response.data.ExceptionMessage) {
-        // error desde webapi
+      
         myService.Alert(response.data.ExceptionMessage);
       }
       else {
@@ -124,25 +124,21 @@ myApp.factory('myHttpInterceptor', function ($q, myService) {
 })
 
   .config(function ($httpProvider) {
-    //agrega el interceptor definido anteriormente
     $httpProvider.interceptors.push('myHttpInterceptor');
   });
 
-myApp.run(function ($rootScope, $http, $location, myService) {
-  // $rootScope desde donde heredan todos los $scope de los controladores
-  // todas las variables o funciones que se definan aquí están disponibles en todos los controladores
-  $rootScope.TituloAccionABMC = { A: '(Agregar)', B: '(Eliminar)', M: '(Modificar)', C: '(Consultar)', L: '(Listado)' };
-  $rootScope.AccionABMC = 'L';   // inicialmente inicia el el listado (buscar con parametros)
-  $rootScope.Mensajes = { SD: ' No se encontraron registros...', RD: ' Revisar los datos ingresados...' };
-});
-
-myApp.controller('modificar', function ($scope) {
-  $scope.message = 'Modificar';
-});
 
 myApp.controller('nuevo', function ($scope, $http, myService) {
+
+  //Metodo para cargar lista de Marcas en el combo
+  $http.get('api/Marcas').then(function (response) {
+    $scope.Marca = response.data;
+  });
+
+
   $scope.Grabar = function () {
-    $http.post('/api/Expedientes', $scope.DtoSel);
+    $scope.DtoSel.status = 1; 
+    $http.post('/api/Expedientes/', $scope.DtoSel);
   };
 });
 
@@ -154,15 +150,33 @@ myApp.controller('expedientes',
       .then(function (response) {
         $scope.expedients = response.data;
       });
+    //Metodo para cargar lista de Marcas en el combo
+    $http.get('api/Marcas').then(function (response) {
+      $scope.Marca = response.data;
+    });
+
+    $scope.Grabar = function () {
+      $scope.DtoSel.status = 1;
+      $http.post('/api/Expedientes/', $scope.DtoSel);
+    };
+
+    $scope.BuscarPorId = function (Dto) {
+      $http.get('/api/Expedientes/' + Dto.id)
+        .then(function (response) {
+          $scope.DtoSel = response.data;
+          $scope.DtoSel.fecha = new Date($scope.DtoSel.fecha);
+        });
+    };
+
+    $scope.Modificar = function (Dto) {
+      $scope.BuscarPorId(Dto);
+    };
+
 
     $scope.Eliminar = function (dto) {
       myService.Confirm("Esta seguro que desea eliminar este registro?", fun, null, "Confirmación", "Aceptar", "Cancelar");
       function fun() {
-          $http.put('/api/Expedientes/' + dto.id, dto);
+          $http.delete('/api/Expedientes/' + dto.id, dto);
       }
     };
   });
-
-$(document).ready(function () {
-  $('#tablaExpedientes').DataTable();
-});
