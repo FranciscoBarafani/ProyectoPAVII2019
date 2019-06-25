@@ -70,7 +70,6 @@
           <Property Name="matricula" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="status" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Marca1" Relationship="Self.FK_Expedientes_Marca" FromRole="Expedientes" ToRole="Marca" />
         </EntityType>
         <EntityType Name="Marca">
           <Key>
@@ -79,7 +78,6 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="status" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Expedientes" Relationship="Self.FK_Expedientes_Marca" FromRole="Marca" ToRole="Expedientes" />
         </EntityType>
         <Association Name="FK_Expedientes_Marca">
           <End Role="Marca" Type="Self.Marca" Multiplicity="1" />

@@ -14,17 +14,8 @@ namespace Datos
     
     public partial class Marca
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Marca()
-        {
-            this.Expedientes = new HashSet<Expediente>();
-        }
-    
         public int id { get; set; }
         public string nombre { get; set; }
         public bool status { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Expediente> Expedientes { get; set; }
     }
 }

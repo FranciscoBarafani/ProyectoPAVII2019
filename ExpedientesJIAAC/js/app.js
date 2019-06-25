@@ -146,18 +146,45 @@ myApp.controller('nuevo', function ($scope, $http, myService) {
 myApp.controller('expedientes',
   function ($scope, $http, myService) {
     $scope.Titulo = "Expedientes";
-    $http.get('/api/Expedientes')
-      .then(function (response) {
-        $scope.expedients = response.data;
-      });
+    //$http.get('/api/Expedientes')
+      //.then(function (response) {
+       // $scope.expedients = response.data;
+      //});
     //Metodo para cargar lista de Marcas en el combo
     $http.get('api/Marcas').then(function (response) {
       $scope.Marca = response.data;
     });
 
+    $scope.Cargar = function () {
+      $http.get('/api/Expedientes')
+        .then(function (response) {
+          $scope.expedients = response.data;
+        });
+    }
+    
+
+    $scope.PaginaActual = 1;
+
+    $scope.Buscar = function () {
+      params = { numeroPagina: $scope.PaginaActual };
+      myService.BloquearPantalla();
+      $http.get('/api/Expedientes', { params: params })
+        .then(function (response) {
+          $scope.expedients = response.data.Lista;  // variable para luego imprimir
+          $scope.RegistrosTotal = response.data.RegistrosTotal;  // var para mostrar en interface
+          myService.DesbloquearPantalla();  // cuando la fn termina exitosamente
+        },
+          function (response) {
+            myService.DesbloquearPantalla();  // cuando la fn termina por error
+            myService.Alert("Error al traer los datos!");
+          });
+    };
+    $scope.Buscar();
+
     $scope.Grabar = function () {
       $scope.DtoSel.status = 1;
       $http.post('/api/Expedientes/', $scope.DtoSel);
+      $scope.Cargar();
     };
 
     $scope.BuscarPorId = function (Dto) {
@@ -178,5 +205,6 @@ myApp.controller('expedientes',
       function fun() {
           $http.delete('/api/Expedientes/' + dto.id, dto);
       }
+      $scope.Cargar();
     };
   });

@@ -1,76 +1,87 @@
 ﻿<!-- New Expediente Form -->
 <div>
-  <form>
+  <form name="FormReg" novalidate>
     <!-- First Row Expedient Number-->
     <div class="form-row">
       <div class="form-group col-md-4">
         <label>Numero Expediente:</label>
-        <input type="number" class="form-control" ng-model="DtoSel.numeroExpediente" placeholder="Numero">
+        <input type="number" name="numeroExpediente" class="form-control" ng-model="DtoSel.numeroExpediente" placeholder="Numero" required maxlength="5">
+        <span class="help-inline" ng-show="FormReg.numeroExpediente.$error.required && (FormReg.numeroExpediente.$touched || FormReg.$submitted)">Dato requerido.</span>
       </div>
       <div class="form-group col-md-2">
         <label>Estado:</label>
-        <select ng-model="DtoSel.estado" class="form-control">
+        <select ng-model="DtoSel.estado" name="estado" class="form-control" required>
           <option selected>En Curso</option>
           <option>Finalizado</option>
         </select>
+        <span class="help-inline" ng-show="FormReg.estado.$error.required">Dato requerido.</span>
       </div>
       <div class="form-group col-md-2">
         <label>Suceso:</label>
-        <select ng-model="DtoSel.suceso" class="form-control">
+        <select ng-model="DtoSel.suceso" name="suceso" class="form-control" required>
           <option selected>Accidente</option>
           <option>Incidente</option>
           <option>Incidente Grave</option>
         </select>
+        <span class="help-inline" ng-show="FormReg.suceso.$error.required && (FormReg.suceso.$touched || FormReg.$submitted)">Dato requerido.</span>
       </div>
     </div>
     <!-- Second Row Date / Place -->
     <div class="form-row">
       <div class="form-group col-md-2">
         <label>Fecha del Incidente:</label>
-        <input type="date" class="form-control" ng-model="DtoSel.fecha" placeholder="Fecha">
+        <input type="date" class="form-control" name="fecha" ng-model="DtoSel.fecha" required placeholder="Fecha">
+        <span class="help-inline" ng-show="FormReg.fecha.$error.required && (FormReg.fecha.$touched || FormReg.$submitted)">Dato requerido.</span>
+        <span class="help-inline" ng-show="FormReg.fecha.$error.min">La fecha no deberia ser posterior a la actual</span>
       </div>
       <div class="form-group col-md-4">
         <label>Lugar</label>
-        <input type="text" class="form-control" ng-model="DtoSel.lugar" placeholder="Lugar">
+        <input type="text" class="form-control" name="lugar" ng-model="DtoSel.lugar" required placeholder="Lugar" maxlength="50">
+        <span class="help-inline" ng-show="FormReg.lugar.$error.required && (FormReg.lugar.$touched || FormReg.$submitted)" >Dato requerido.</span>
       </div>
       <div class="form-group col-md-2">
         <label>Fase:</label>
-        <select ng-model="DtoSel.fase" class="form-control">
+        <select ng-model="DtoSel.fase" name="fase" class="form-control" required>
           <option selected>Despegue</option>
           <option>Aterrizaje</option>
           <option>Rodaje</option>
           <option>Vuelo</option>
         </select>
+        <span class="help-inline" ng-show="FormReg.fase.$error.required && (FormReg.fase.$touched || FormReg.$submitted)" >Dato requerido.</span>
       </div>
     </div>
     <!-- Third Row / Aircraft Info -->
     <div class="form-row">
       <div class="form-group col-md-2">
         <label>Aeronave:</label>
-        <select ng-model="DtoSel.aeronave" class="form-control">
+        <select ng-model="DtoSel.aeronave" name="aeronave" class="form-control" required>
           <option selected>Avion</option>
           <option>Helicoptero</option>
           <option>Experimental</option>
           <option>Otro</option>
         </select>
+        <span class="help-inline" ng-show="FormReg.aeronave.$error.required && (FormReg.aeronave.$touched || FormReg.$submitted)">Dato requerido.</span>
       </div>
       <div class="form-group col-md-2">
         <label>Marca:</label>
-        <select ng-model="DtoSel.marca" class="form-control"
-                ng-options="obj.id as obj.nombre for obj in Marca">        
-        </select>
+        <select ng-model="DtoSel.marca" name="marca" class="form-control" required
+                ng-options="obj.id as obj.nombre for obj in Marca"></select>
+        <span class="help-inline" ng-show="FormReg.marca.$error.required && (FormReg.marca.$touched || FormReg.$submitted)">Dato requerido.</span>
       </div>
       <div class="form-group col-md-2">
         <label>Modelo:</label>
-        <input type="text" class="form-control" ng-model="DtoSel.modelo" placeholder="Modelo" />
+        <input type="text" class="form-control" ng-model="DtoSel.modelo" name="modelo" required placeholder="Modelo" maxlength="15" />
+        <span class="help-inline" ng-show="FormReg.modelo.$error.required && (FormReg.modelo.$touched || FormReg.$submitted)">Dato requerido.</span>
       </div>
       <div class="form-group col-md-2">
         <label>Matricula:</label>
-        <input type="text" class="form-control" ng-model="DtoSel.matricula" placeholder="Matricula" />
+        <input type="text" class="form-control" ng-model="DtoSel.matricula" name="matricula" placeholder="Matricula" required maxlength="8"/>
+        <span class="help-inline" ng-show="FormReg.matricula.$error.required && (FormReg.matricula.$touched || FormReg.$submitted)">Dato requerido.</span>
       </div>
     </div>
   </form>
   <br />
-  <button type="submit" class="btn btn-primary" ng-click="Grabar()">Agregar</button>
+  <button type="submit" class="btn btn-primary" ng-disabled="FormReg.$invalid" ng-click="Grabar()">Agregar</button>
+  <span class="row alert alert-danger" ng-show="FormReg.$invalid && (FormReg.$submitted)"  >Revisar los Datos Ingresados </span>
 </div>
       

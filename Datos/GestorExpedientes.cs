@@ -13,10 +13,20 @@ namespace Datos
   public class GestorExpedientes
   {
     //Obtener todos los registros
-    public IQueryable<Expediente> obtenerTodos() {
-      ExpedientesEntities1 db = new ExpedientesEntities1();
-      return (db.Expedientes.Where(a => a.status == true));
+    public static IEnumerable<Expediente> obtenerTodos(int numeroPagina, out int RegistrosTotal)
+    {
+      using (ExpedientesEntities1 db = new ExpedientesEntities1())
+      {
+        IQueryable<Expediente> consulta = db.Expedientes;
+        consulta = consulta.Where(a => a.status == true);
+        int RegistroDesde = (numeroPagina - 1) * 10;
+        RegistrosTotal = consulta.Count();
+        var Lista = consulta.OrderBy(a => a.numeroExpediente).Skip(RegistroDesde).Take(10).ToList();
+        return Lista;
+
+      }
     }
+
     //Grabar Registro
     public static void Grabar(Expediente DtoSel)
     {

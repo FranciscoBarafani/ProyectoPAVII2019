@@ -44,143 +44,128 @@
                   ng-click="Eliminar(dto)">
             Eliminar
           </button>
-
         </td>
       </tr>
     </tbody>
   </table>
-  <!-- FALTA IMPLEMENTAR -->
-  <div class="col-sm-12" style="padding-top: 20px">
-    <div class="row bg-light">
-      <div class="col-sm-3">
-        <span class="label label-default font-weight-bold">Registros: {{RegistrosTotal}}</span>
+  <div class="col-sm-12">
+    <div calss="row bg-light">
+      <div calss="col-sm-3">
+        <span class="col-form-label label-default font-weight-bold">Registros: {{RegistrosTotal}}</span>
       </div>
       <div class="col-sm-6 text-center">
-        <ul uib-pagination total-items="RegistrosTotal" ng-model="PaginaActual" max-size="10"
+        <ul uib-pagination total-items="RegistrosTotal" items-per-page="10" ng-model="PaginaActual" max-size="5" 
             class="pagination-sm" boundary-links="true" first-text="Primera" last-text="Ultima"
             previous-text="Anterior" next-text="Siguiente" rotate="true" ng-change="Buscar()"></ul>
       </div>
     </div>
   </div>
-</div>
 
 
-<!-- MODAL -->
-<div class="modal" id="myModal">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Modificar Expediente</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-
-      <!-- Modal body -->
-      <div class="modal-body">
-        <div>
-          <form>
-            <!-- First Row Expedient Number-->
-            <div class="form-row">
-              <div class="form-group col-md-8">
-                <label>Numero Expediente:</label>
-                <input type="number" class="form-control" ng-model="DtoSel.numeroExpediente" placeholder="Numero">
-              </div>
-              <div class="form-group col-md-2">
-                <label>Estado:</label>
-                <select ng-model="DtoSel.estado" class="form-control">
-                  <option selected>En Curso</option>
-                  <option>Finalizado</option>
-                </select>
-              </div>
-              <div class="form-group col-md-2">
-                <label>Suceso:</label>
-                <select ng-model="DtoSel.suceso" class="form-control">
-                  <option selected>Accidente</option>
-                  <option>Incidente</option>
-                  <option>Incidente Grave</option>
-                </select>
-              </div>
-            </div>
-            <!-- Second Row Date / Place -->
-            <div class="form-row">
-              <div class="form-group col-md-4">
-                <label>Fecha del Incidente:</label>
-                <input type="date" class="form-control" ng-model="DtoSel.fecha" placeholder="Fecha">
-              </div>
-              <div class="form-group col-md-4">
-                <label>Lugar</label>
-                <input type="text" class="form-control" ng-model="DtoSel.lugar" placeholder="Lugar">
-              </div>
-              <div class="form-group col-md-4">
-                <label>Fase:</label>
-                <select ng-model="DtoSel.fase" class="form-control">
-                  <option selected>Despegue</option>
-                  <option>Aterrizaje</option>
-                  <option>Rodaje</option>
-                  <option>Vuelo</option>
-                </select>
-              </div>
-            </div>
-            <!-- Third Row / Aircraft Info -->
-            <div class="form-row">
-              <div class="form-group col-md-3">
-                <label>Aeronave:</label>
-                <select ng-model="DtoSel.aeronave" class="form-control">
-                  <option selected>Avion</option>
-                  <option>Helicoptero</option>
-                  <option>Experimental</option>
-                  <option>Otro</option>       </select>
-              </div>
-              <div class="form-group col-md-3">
-                <label>Marca:</label>
-                  <select ng-model="DtoSel.marca" class="form-control"
-                          ng-options="obj.id as obj.nombre for obj in Marca"></select>
-              </div>
-              <div class="form-group col-md-3">
-                <label>Modelo:</label>
-                <input type="text" class="form-control" ng-model="DtoSel.modelo" placeholder="Modelo" />
-              </div>
-              <div class="form-group col-md-3">
-                <label>Matricula:</label>
-                <input type="text" class="form-control" ng-model="DtoSel.matricula" placeholder="Matricula" />
-              </div>
-            </div>
-          </form>
-          <br />
+  <!-- MODAL -->
+  <div class="modal" id="myModal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Modificar Expediente</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
 
-      </div>
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div>
+            <form name="FormReg" novalidate>
+              <!-- First Row Expedient Number-->
+              <div class="form-row">
+                <div class="form-group col-md-8">
+                  <label>Numero Expediente:</label>
+                  <input type="number" name="numeroExpediente" class="form-control" ng-model="DtoSel.numeroExpediente" placeholder="Numero" required maxlength="5">
+                  <span class="help-inline" ng-show="FormReg.numeroExpediente.$error.required && (FormReg.numeroExpediente.$touched || FormReg.$submitted)">Dato requerido.</span>
+                </div>
+                <div class="form-group col-md-2">
+                  <label>Estado:</label>
+                  <select ng-model="DtoSel.estado" name="estado" class="form-control" required>
+                    <option selected>En Curso</option>
+                    <option>Finalizado</option>
+                  </select>
+                  <span class="help-inline" ng-show="FormReg.estado.$error.required">Dato requerido.</span>
+                </div>
+                <div class="form-group col-md-2">
+                  <label>Suceso:</label>
+                  <select ng-model="DtoSel.suceso" name="suceso" class="form-control" required>
+                    <option selected>Accidente</option>
+                    <option>Incidente</option>
+                    <option>Incidente Grave</option>
+                  </select>
+                  <span class="help-inline" ng-show="FormReg.suceso.$error.required && (FormReg.suceso.$touched || FormReg.$submitted)">Dato requerido.</span>
+                </div>
+              </div>
+              <!-- Second Row Date / Place -->
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <label>Fecha del Incidente:</label>
+                  <input type="date" class="form-control" name="fecha" ng-model="DtoSel.fecha" required placeholder="Fecha" max="{{currentDate | date:'yyyy-MM-dd'}}">
+                  <span class="help-inline" ng-show="FormReg.fecha.$error.required && (FormReg.fecha.$touched || FormReg.$submitted)">Dato requerido.</span>
+                  <span class="help-inline" ng-show="FormReg.fecha.$error.min">La fecha no deberia ser posterior a la actual</span>
+                </div>
+                <div class="form-group col-md-4">
+                  <label>Lugar</label>
+                  <input type="text" class="form-control" name="lugar" ng-model="DtoSel.lugar" required placeholder="Lugar" maxlength="50">
+                  <span class="help-inline" ng-show="FormReg.lugar.$error.required && (FormReg.lugar.$touched || FormReg.$submitted)">Dato requerido.</span>
+                </div>
+                <div class="form-group col-md-4">
+                  <label>Fase:</label>
+                  <select ng-model="DtoSel.fase" name="fase" class="form-control" required>
+                    <option selected>Despegue</option>
+                    <option>Aterrizaje</option>
+                    <option>Rodaje</option>
+                    <option>Vuelo</option>
+                  </select>
+                  <span class="help-inline" ng-show="FormReg.fase.$error.required && (FormReg.fase.$touched || FormReg.$submitted)">Dato requerido.</span>
+                </div>
+              </div>
+              <!-- Third Row / Aircraft Info -->
+              <div class="form-row">
+                <div class="form-group col-md-3">
+                  <label>Aeronave:</label>
+                  <select ng-model="DtoSel.aeronave" name="aeronave" class="form-control" required>
+                    <option selected>Avion</option>
+                    <option>Helicoptero</option>
+                    <option>Experimental</option>
+                    <option>Otro</option>
+                  </select>
+                  <span class="help-inline" ng-show="FormReg.aeronave.$error.required && (FormReg.aeronave.$touched || FormReg.$submitted)">Dato requerido.</span>
+                </div>
+                <div class="form-group col-md-3">
+                  <label>Marca:</label>
+                  <select ng-model="DtoSel.marca" name="marca" class="form-control" required
+                          ng-options="obj.id as obj.nombre for obj in Marca"></select>
+                  <span class="help-inline" ng-show="FormReg.marca.$error.required && (FormReg.marca.$touched || FormReg.$submitted)">Dato requerido.</span>
 
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" ng-click="Grabar()" data-dismiss="modal">Grabar</button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                </div>
+                <div class="form-group col-md-3">
+                  <label>Modelo:</label>
+                  <input type="text" class="form-control" ng-model="DtoSel.modelo" name="modelo" required placeholder="Modelo" maxlength="15" />
+                  <span class="help-inline" ng-show="FormReg.modelo.$error.required && (FormReg.modelo.$touched || FormReg.$submitted)">Dato requerido.</span>
+                </div>
+                <div class="form-group col-md-3">
+                  <label>Matricula:</label>
+                  <input type="text" class="form-control" ng-model="DtoSel.matricula" name="matricula" placeholder="Matricula" required maxlength="8" />
+                  <span class="help-inline" ng-show="FormReg.matricula.$error.required && (FormReg.matricula.$touched || FormReg.$submitted)">Dato requerido.</span>
+                </div>
+              </div>
+            </form>
+            <br />
+          </div>
+        </div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" ng-disabled="FormReg.$invalid" ng-click="Grabar()" data-dismiss="modal">Grabar</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+          <span class="row alert alert-danger" ng-show="FormReg.$invalid && (FormReg.$submitted)">Revisar los Datos Ingresados </span>
+        </div>
       </div>
-
     </div>
   </div>
 </div>
-
-<script>
-  function myFunction() {
-    // Declare variables
-    var input, filter, table, tr, td, i, txtValue;
-    input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
-    table = document.getElementById("tablaExpedientes");
-    tr = table.getElementsByTagName("tr");
-
-    // Loop through all table rows, and hide those who don't match the search query
-    for (i = 0; i < tr.length; i++) {
-      td = tr[i].getElementsByTagName("td")[0];
-      if (td) {
-        txtValue = td.textContent || td.innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-          tr[i].style.display = "";
-        } else {
-          tr[i].style.display = "none";
-        }
-      }
-    }
-  }
-</script>

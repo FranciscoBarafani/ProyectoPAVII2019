@@ -16,12 +16,16 @@ namespace ExpedientesJIAAC.controllers
     {
         private ExpedientesEntities1 db = new ExpedientesEntities1();
 
-        // GET: api/Expedientes
-        public IQueryable<Expediente> GetExpedientes()
-        {
-            GestorExpedientes gestor = new GestorExpedientes();
-            return (gestor.obtenerTodos());
-        }
+    // GET: api/Expedientes
+
+    public IHttpActionResult GetExpedientes(int numeroPagina = 1)
+    {
+      int RegistrosTotal;
+      var Lista = Datos.GestorExpedientes.obtenerTodos(numeroPagina, out RegistrosTotal);
+      return Ok(new { Lista = Lista, RegistrosTotal = RegistrosTotal });
+    }
+
+
 
         // GET: api/Expedientes/5
         [ResponseType(typeof(Expediente))]

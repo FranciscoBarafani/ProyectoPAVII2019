@@ -26,7 +26,5 @@ namespace Datos
         public string matricula { get; set; }
         public string estado { get; set; }
         public bool status { get; set; }
-    
-        public virtual Marca Marca1 { get; set; }
     }
 }
